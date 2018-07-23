@@ -1,0 +1,47 @@
+<html>
+<head>
+<style>
+table.cust-table{width:100%;}
+table.cust-table td {border:solid 1px #aaa;}
+table.cust-table th {border:solid 1px #aaa; background: #bbb;}
+</style>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+    <h3>Saved Customers</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Frequency</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer : ${customers}">
+            <td class="success" th:text="${customer.name}"></td>
+            <td class="success" th:text="${customer.amount}"></td>
+            <td class="success" th:text="${customer.frequency}"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+    <br/>
+    <a th:href="@{/}">Add new customer</a>
+</body>
+</html>

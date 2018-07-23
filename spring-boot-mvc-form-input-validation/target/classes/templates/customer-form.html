@@ -1,0 +1,134 @@
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<style>
+table.emp-form td:nth-child(3) {
+	color: red;
+}
+
+.vertical-center {
+	min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+	min-height: 100vh; /* These two lines are counted as one :-)       */
+	display: flex;
+	align-items: center;
+}
+
+.textbox-width {
+	max-width: 40%;
+}
+</style>
+</head>
+<body>
+	<div class="jumbotron vertical-center">
+		<!-- 
+                      ^--- Added class  -->
+		<div class="container">
+			<form action="#" th:action="@{/}" th:object="${customer}"
+				method="post">
+
+				<!-- error summary -->
+
+				<div>
+					<ul class="error-summary-list">
+						<p th:if="${#fields.hasErrors('global')}" th:errors="*{global}">error</p>
+						<li th:each="field : ${fields}"><a
+							th:if="${!#fields.errors(field[0]).empty}"
+							th:href="'#' + ${field[1]}" href="#"> <!-- field error item -->
+								<span th:fragment="field-error-item( field )"
+								th:each="e : ${#fields.errors(field)}" th:utext="${e}"
+								th:id="'error-'+${field}" class="error-message">error </span></a></li>
+					</ul>
+				</div>
+				<div class="form-group">
+					<label for="name">Name</label> <input type="text"
+						class="form-control textbox-width" th:field="*{name}"
+						aria-describedby="nameEntry" placeholder="Enter Name"> <small
+						id="nameHelp" class="form-text text-muted">Please Enter
+						Full Name</small>
+				</div>
+				<div class="form-group">
+					<label for="amount">Amount</label> <input type="text"
+						class="form-control textbox-width" th:field="*{amount}"
+						placeholder="Amount">
+				</div>
+				<h4>Select Frequency of payment:</h4>
+				<div
+					th:each="frequency : ${T(com.logicbig.example.Frequency).values()}">
+					<label th:id="'label-'+${frequency.text}"> <input
+						type="radio" class="radio-inline" id="freq" name="freq"
+						th:text="${frequency.text}" th:field="*{frequency}"
+						th:value="${frequency}" th:checked="${frequency.text} ? 'checked'" /> <br />
+					</label>
+				</div>
+				<br />
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+	<!-- 	<form action="#" th:action="@{/}" th:object="${customer}" method="post">
+		<table class="emp-form">
+
+			error summary
+
+			<div>
+				<ul class="error-summary-list">
+					<p th:if="${#fields.hasErrors('global')}" th:errors="*{global}">error</p>
+					<li th:each="field : ${fields}"><a
+						th:if="${!#fields.errors(field[0]).empty}"
+						th:href="'#' + ${field[1]}" href="#"> field error item
+							<span th:fragment="field-error-item( field )"
+							th:each="e : ${#fields.errors(field)}" th:utext="${e}"
+							th:id="'error-'+${field}" class="error-message">error </span></a></li>
+				</ul>
+			</div>
+
+
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" th:field="*{name}" /></td>
+				<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+					Error</td>
+			</tr>
+			<tr>
+				<td>Amount:</td>
+				<td><input type="text" th:field="*{amount}" /></td>
+				<td th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">Amount
+					Error</td>
+			</tr>
+			<tr>
+				<td>Frequency</td>
+				<td><div
+						th:each="frequency : ${T(com.logicbig.example.Frequency).values()}">
+						<label th:id="'label-'+${frequency.text}"> <input
+							type="radio" id="freq" name="freq" th:text="${frequency.text}"
+							th:field="*{frequency}" th:value="${frequency}"
+							th:checked="${currentSelected}" />
+						</label>
+					</div></td>
+				<td th:if="${#fields.hasErrors('frequency')}"
+					th:errors="*{frequency}">Frequency Error</td>
+			</tr>
+			<tr>
+				<td>
+					<button type="submit">Submit</button>
+				</td>
+			</tr>
+		</table>
+	</form> -->
+</body>
+</html>

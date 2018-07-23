@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: spring-boot-mvc-form-input-validation
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: robert.b.chambers
+Implementation-Vendor-Id: com.logicbig.example
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/spring-boot-mvc-form-input-validation
+Created-By: Maven Integration for Eclipse
+
